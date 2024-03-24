@@ -19,7 +19,7 @@ class WordModel {
     this.englishExapmle = const [],
   });
 
-  WordModel devrementIndexAtBatabase() {
+  WordModel decementIndexAtBatabase() {
     return WordModel(
         indexAtDatabase: indexAtDatabase - 1,
         text: text,
