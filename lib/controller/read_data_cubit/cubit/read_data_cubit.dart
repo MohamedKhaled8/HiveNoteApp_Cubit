@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dbhivelearn/model/word_wodel.dart';
-import 'package:dbhivelearn/constant/hive_constant.dart';
+import 'package:dbhivelearn/constant/db/hive_constant.dart';
 
 part 'read_data_state.dart';
 
@@ -18,7 +18,7 @@ enum SortedBy { time, wordLength }
 enum SortingType { ascending, descending }
 
 class ReadDataCubit extends Cubit<ReadDataState> {
-  static get(context) => BlocProvider.of(context);
+  static ReadDataCubit get(context) => BlocProvider.of(context);
 
   ReadDataCubit() : super(ReadDataCubitInitial());
 
@@ -31,14 +31,17 @@ class ReadDataCubit extends Cubit<ReadDataState> {
 
   void updateLanguageFilter(LanguageFilter languageFilter) {
     this.languageFilter = languageFilter;
+    getWords();
   }
 
   void updateSortingType(SortingType sortingType) {
     this.sortingType = sortingType;
+    getWords();
   }
 
   void updateSortedBy(SortedBy sortedBy) {
     this.sortedBy = sortedBy;
+    getWords();
   }
 
 //1- لو اليوزر عايز كل الكلمات

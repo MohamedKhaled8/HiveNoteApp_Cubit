@@ -17,7 +17,7 @@ class WordTypeAdapter extends TypeAdapter<WordModel> {
   }
 
   @override
-  int get typeId => throw UnimplementedError();
+  int get typeId => 0; 
 
   @override
   void write(BinaryWriter writer, WordModel obj) {

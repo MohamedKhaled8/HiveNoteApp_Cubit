@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dbhivelearn/model/word_wodel.dart';
-import 'package:dbhivelearn/constant/hive_constant.dart';
+import 'package:dbhivelearn/constant/db/hive_constant.dart';
 
 part 'write_data_state.dart';
 
@@ -51,8 +51,7 @@ class WriteDataCubit extends Cubit<WriteDataState> {
     }
   }
 
-
-// saveDatabaseInput 
+// saveDatabaseInput
   Future<void> _saveDatabaseInput(List<WordModel> words) async {
     box.put(HiveConstance.wordsList, words);
   }
@@ -67,7 +66,6 @@ class WriteDataCubit extends Cubit<WriteDataState> {
     }, "we have problems when we add word , please try again");
   }
 
-
 //2- delete allWord
   void deleteWord(int indexAtDatabase) {
     _tryAndCatchBloc(() {
@@ -77,7 +75,7 @@ class WriteDataCubit extends Cubit<WriteDataState> {
       for (var i = indexAtDatabase; i < words.length; i++) {
         words[i] = words[i].decementIndexAtBatabase();
       }
-            _saveDatabaseInput(words);
+      _saveDatabaseInput(words);
 
       // box.put(HiveConstance.wordsList, words);
     }, "we have problems when we Delete word , please try again");
@@ -141,10 +139,12 @@ class WriteDataCubit extends Cubit<WriteDataState> {
 //8-update isArabic
   void updateIsAraic(bool isArabic) {
     this.isArabic = isArabic;
+    emit(WriteDataCubitInitialState());
   }
 
 //9-update color
   void updateColorCode(int colorCode) {
     this.colorCode = colorCode;
+    emit(WriteDataCubitInitialState());
   }
 }
